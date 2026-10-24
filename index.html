@@ -1,1 +1,600 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Khadija Mehar's web development portfolio featuring web projects, skills and services.">
+  <title>Khadija Mehar | Web Developer</title>
+
+  <style>
+    :root {
+      --bg: #080b18;
+      --panel: #11172b;
+      --purple: #a78bfa;
+      --blue: #60a5fa;
+      --text: #f8fafc;
+      --muted: #aab4ca;
+      --border: rgba(167, 139, 250, 0.2);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, 90%); margin: auto; }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8, 11, 24, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo { font-size: 1.3rem; font-weight: 800; }
+    .logo span { color: var(--purple); }
+
+    .nav-links { display: flex; flex-wrap: wrap; gap: 22px; }
+    .nav-links a { color: var(--muted); font-size: 0.92rem; transition: .25s; }
+    .nav-links a:hover { color: var(--purple); }
+
+    .hero {
+      min-height: 86vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      isolation: isolate;
+      padding: 90px 0;
+    }
+
+    .hero::before, .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .23;
+    }
+
+    .hero::before {
+      width: 330px; height: 330px;
+      background: #7c3aed; top: 8%; left: -100px;
+    }
+
+    .hero::after {
+      width: 300px; height: 300px;
+      background: #2563eb; bottom: 0; right: -80px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 14px;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      color: var(--purple);
+      background: rgba(167, 139, 250, .07);
+      font-size: .85rem;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      max-width: 850px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #c4b5fd, #60a5fa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: var(--muted);
+      margin: 25px 0 32px;
+      font-size: 1.08rem;
+    }
+
+    .buttons { display: flex; flex-wrap: wrap; gap: 14px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 21px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    .btn-primary {
+      background: linear-gradient(110deg, #8b5cf6, #3b82f6);
+      box-shadow: 0 8px 30px rgba(99, 102, 241, .2);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+
+    section { padding: 90px 0; }
+
+    .section-label {
+      color: var(--purple);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: .78rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .section-intro { color: var(--muted); max-width: 680px; margin-bottom: 36px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .panel {
+      background: linear-gradient(145deg, rgba(17,23,43,.96), rgba(13,18,35,.96));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+
+    .about-copy { color: var(--muted); }
+    .about-copy p + p { margin-top: 16px; }
+
+    .highlight-list { display: grid; gap: 14px; }
+    .highlight {
+      padding: 17px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .highlight strong { display: block; margin-bottom: 3px; }
+    .highlight span { color: var(--muted); font-size: .92rem; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .skill-card {
+      padding: 22px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      transition: transform .25s, border-color .25s;
+    }
+
+    .skill-card:hover, .project-card:hover, .service-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(167,139,250,.65);
+    }
+
+    .skill-card h3 { margin-bottom: 7px; }
+    .skill-card p { color: var(--muted); font-size: .92rem; }
+
+    .projects-grid, .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .project-card, .service-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      overflow: hidden;
+      transition: transform .25s, border-color .25s;
+    }
+
+    .project-art {
+      min-height: 220px;
+      display: grid;
+      place-items: center;
+      padding: 25px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(167,139,250,.27), transparent 40%),
+        linear-gradient(135deg, #17213b, #111329);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-art .icon { font-size: 3.2rem; display: block; margin-bottom: 8px; }
+    .project-art h3 { font-size: 1.3rem; }
+    .project-content { padding: 25px; }
+    .project-content p { color: var(--muted); margin: 12px 0 18px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 17px 0; }
+    .tag {
+      font-size: .78rem;
+      color: #d6ccff;
+      background: rgba(167,139,250,.1);
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      border-radius: 30px;
+    }
+
+    .project-note { color: var(--muted); font-size: .82rem; }
+
+    .service-card { padding: 27px; }
+    .service-icon { font-size: 1.8rem; }
+    .service-card h3 { margin: 12px 0 8px; }
+    .service-card p { color: var(--muted); font-size: .94rem; }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .process-step {
+      border-top: 2px solid var(--purple);
+      padding: 18px 4px;
+    }
+
+    .process-step b { color: var(--purple); font-size: .8rem; }
+    .process-step h3 { margin: 7px 0; }
+    .process-step p { color: var(--muted); font-size: .88rem; }
+
+    .contact-box {
+      text-align: center;
+      padding: 55px 28px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top right, rgba(96,165,250,.14), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(167,139,250,.17), transparent 35%),
+        var(--panel);
+    }
+
+    .contact-box p { color: var(--muted); max-width: 600px; margin: 15px auto 25px; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .reveal { animation: fade-up .8s ease both; }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner { padding: 15px 0; align-items: flex-start; flex-direction: column; }
+      .nav-links { gap: 12px 16px; }
+      .about-grid, .projects-grid, .services-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero { min-height: auto; padding: 100px 0 70px; }
+      h1 { letter-spacing: -1px; }
+      section { padding: 65px 0; }
+    }
+
+    @media (max-width: 430px) {
+      .skills-grid, .process-grid { grid-template-columns: 1fr; }
+      .container { width: 92%; }
+      .panel { padding: 21px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="logo" href="#home">Khadija<span>.</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container reveal">
+        <span class="eyebrow">Web Developer · Portfolio</span>
+        <h1>Building digital<br>experiences with <span class="gradient-text">purpose.</span></h1>
+        <p>
+          Hi, I'm Khadija Mehar. I build and customize websites with a focus on
+          clear layouts, thoughtful details and user-friendly experiences.
+          Explore my projects and let's discuss your next website.
+        </p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="#projects">Explore My Work ↗</a>
+          <a class="btn btn-secondary" href="#contact">Let's Connect</a>
+        </div>
+      </div>
+    </section>
+
+```
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-copy">
+        <div class="section-label">A little about me</div>
+        <h2 class="section-title">Thoughtful design.<br><span class="gradient-text">Practical solutions.</span></h2>
+        <p>
+          I'm a developing web professional who enjoys turning ideas into
+          organized, attractive and accessible web experiences. I focus on
+          understanding the goal of a project and presenting information clearly.
+        </p>
+        <p>
+          My portfolio highlights projects I've worked on and the technologies
+          used in them. I'm always learning and improving my development workflow.
+        </p>
+      </div>
+      <div class="panel highlight-list">
+        <div class="highlight">
+          <strong>🎯 User-focused</strong>
+          <span>Clear navigation and useful page layouts.</span>
+        </div>
+        <div class="highlight">
+          <strong>📱 Responsive-minded</strong>
+          <span>Layouts designed to adapt to different screen sizes.</span>
+        </div>
+        <div class="highlight">
+          <strong>🤝 Collaborative</strong>
+          <span>Open communication and a practical approach to project goals.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-label">What I work with</div>
+    <h2 class="section-title">Skills & Technologies</h2>
+    <p class="section-intro">
+      These are the areas represented in my current web projects. I can refine
+      this list as we verify the technologies used in each project.
+    </p>
+    <div class="skills-grid">
+      <article class="skill-card">
+        <h3>HTML</h3>
+        <p>Structuring web pages and content.</p>
+      </article>
+      <article class="skill-card">
+        <h3>CSS</h3>
+        <p>Layouts, styling and responsive design.</p>
+      </article>
+      <article class="skill-card">
+        <h3>JavaScript</h3>
+        <p>Interactive elements and browser-side behavior.</p>
+      </article>
+      <article class="skill-card">
+        <h3>PHP</h3>
+        <p>Server-side project files and functionality.</p>
+      </article>
+      <article class="skill-card">
+        <h3>MySQL</h3>
+        <p>Database concepts used in web applications.</p>
+      </article>
+      <article class="skill-card">
+        <h3>WordPress</h3>
+        <p>Website building and content management.</p>
+      </article>
+    </div>
+    <p class="project-note" style="margin-top:16px">
+      Note: Keep only the technologies you can confidently explain and have actually used.
+    </p>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Selected work</div>
+    <h2 class="section-title">Projects I'm Proud to Share</h2>
+    <p class="section-intro">
+      A closer look at two projects from my current development work.
+      More details and screenshots can be added as we review the project files.
+    </p>
+
+    <div class="projects-grid">
+      <article class="project-card">
+        <div class="project-art">
+          <div>
+            <span class="icon">🚘</span>
+            <h3>New Concept Limo Services</h3>
+            <span>Airport Transportation Website</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>Airport Transportation Website</h3>
+          <p>
+            A transportation website project featuring a dedicated landing page,
+            service-related pages, images and a ride-booking interface.
+          </p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">PHP files</span>
+          </div>
+          <p class="project-note">
+            Project preview: screenshots and a verified live demo can be added later.
+          </p>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-art">
+          <div>
+            <span class="icon">💼</span>
+            <h3>Job Application Project</h3>
+            <span>Web Application</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>Job Application Project</h3>
+          <p>
+            A project focused on the job application process. Its specific
+            functionality, features and technology stack will be described after
+            reviewing the existing files.
+          </p>
+          <div class="tags">
+            <span class="tag">Project details to verify</span>
+          </div>
+          <p class="project-note">
+            Project preview: add actual screenshots after reviewing the application.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-label">How I can help</div>
+    <h2 class="section-title">Services</h2>
+    <p class="section-intro">
+      Services I can offer as my skills and project experience support them.
+      We can refine this section before publishing the portfolio.
+    </p>
+    <div class="services-grid">
+      <article class="service-card">
+        <span class="service-icon">🖥️</span>
+        <h3>Website Creation</h3>
+        <p>Organized, attractive web pages tailored to a project's goals and content.</p>
+      </article>
+      <article class="service-card">
+        <span class="service-icon">🎨</span>
+        <h3>Website Styling</h3>
+        <p>Improvements to layouts, visual consistency, typography and responsive presentation.</p>
+      </article>
+      <article class="service-card">
+        <span class="service-icon">🧩</span>
+        <h3>Website Updates</h3>
+        <p>Content and layout changes to existing websites, within my supported skill set.</p>
+      </article>
+      <article class="service-card">
+        <span class="service-icon">📱</span>
+        <h3>Responsive Layouts</h3>
+        <p>Design adjustments to make website content easier to use on mobile and desktop.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="section-label">A simple workflow</div>
+    <h2 class="section-title">How I Approach a Project</h2>
+    <p class="section-intro">Clear steps help keep a website project organized.</p>
+    <div class="process-grid">
+      <div class="process-step">
+        <b>STEP 01</b>
+        <h3>Understand</h3>
+        <p>Discuss the goal, audience and required features.</p>
+      </div>
+      <div class="process-step">
+        <b>STEP 02</b>
+        <h3>Plan</h3>
+        <p>Organize the page structure and content.</p>
+      </div>
+      <div class="process-step">
+        <b>STEP 03</b>
+        <h3>Build</h3>
+        <p>Create the agreed design and functionality.</p>
+      </div>
+      <div class="process-step">
+        <b>STEP 04</b>
+        <h3>Review</h3>
+        <p>Check the result and make agreed refinements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <div class="section-label">Have a project in mind?</div>
+      <h2 class="section-title">Let's build something <span class="gradient-text">meaningful.</span></h2>
+      <p>
+        Have an idea for a website or want to discuss a project?
+        Get in touch to start a conversation.
+      </p>
+      <!-- Add your preferred professional contact email before publishing. -->
+      <a class="btn btn-primary" href="mailto:YOUR-EMAIL@example.com">Contact Me ✉</a>
+      <p class="project-note">Replace the sample email address with your professional email before publishing.</p>
+    </div>
+  </div>
+</section>
+```
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Khadija Mehar</span>
+      <span>Designed with care · Web Developer Portfolio</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
 
